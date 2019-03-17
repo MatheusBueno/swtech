@@ -1,0 +1,66 @@
+<ion-header>
+  <!-- Searchbar in a Toolbar -->
+  <ion-toolbar>
+    <!-- Searchbar with a placeholder -->
+    <ion-searchbar (ionChange)="onChange($event)" mode="ios" animated placeholder="Qual produto você procura?">
+    </ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <p *ngIf="offerList.length == 0 && allList" style="text-align: center; margin-top: 50px;">Não encontramos nenhuma
+    oferta :(</p>
+
+  <div *ngFor="let item of offerList">
+
+    <img src="assets/selo.png" class="selo" *ngIf="item.offers['0'].isOrganic">
+    <ion-card>
+      <ion-card-header>
+
+        <ion-grid style="display: flex; align-items: center;">
+          <ion-col style="padding: 0px;">
+            <span style="font-size: 25px; color: #2c3e50">{{ item.offers['0'].productType}}</span>
+            <span style="font-size: 12px">, fresquinho entregue por: </span>
+          </ion-col>
+
+        </ion-grid>
+        <ion-grid style="padding-top: 20px;">
+          <ion-row>
+            <ion-col>
+              <ion-avatar>
+                <img [src]="item.photoUrl">
+              </ion-avatar>
+            </ion-col>
+            <ion-col size="9">
+              <ion-row style="display: flex; align-items: center; font-size: 15px; color: #2c3e50">
+                {{ item.name }}
+              </ion-row>
+              <ion-row>
+                <ion-col style="padding: 0px 3px; text-align: center;" *ngFor="let num of [1,2,3,4,5]; let i = index">
+                  <!-- <img *ngIf="item.evaluationByStars >= i" src="assets/star-full.svg"
+                    style="width: 20px; display: inline-block;" height="20"> -->
+                  <img *ngIf="num <= item.evaluationByStars" src="assets/star-full.svg"
+                    style="width: 20px; display: inline-block;" height="20">
+                  <img *ngIf="num > item.evaluationByStars" src="assets/star.svg"
+                    style="width: 20px; display: inline-block;" height="20">
+                </ion-col>
+              </ion-row>
+
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+
+      </ion-card-header>
+
+      <ion-img [src]="item.offers['0'].photoUrl" style="height: 300px"></ion-img>
+      <ion-card-content>
+        <ion-thumbnail slot="start">
+          <img *ngIf="!item.activeDelivery" src="assets/cant.png">
+          <img *ngIf="item.activeDelivery" src="assets/can.png">
+        </ion-thumbnail>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+</ion-content>

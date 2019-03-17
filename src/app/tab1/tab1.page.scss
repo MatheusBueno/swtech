@@ -1,0 +1,22 @@
+.welcome-card ion-img {
+  max-height: 35vh;
+  overflow: hidden;
+}
+
+ion-img {
+  max-height: 270px;
+  object-fit: cover;
+  background-position: center;
+}
+
+ion-card {
+  margin-top: 30px;
+}
+
+.selo {
+  position: relative;
+  right: -75%;
+  height: 39px;
+  width: 80px;
+  top: 55px;
+}
