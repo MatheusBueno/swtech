@@ -1,11 +1,55 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button color="secondary"></ion-back-button>
+      <ion-back-button [text]="'Voltar'" color="medium"></ion-back-button>
     </ion-buttons>
   </ion-toolbar>
-</ion-header> 
+</ion-header>
 
 <ion-content padding>
+
+  <div *ngIf="profile?.photoUrl">
+
+    <!-- here’s the avatar -->
+    <a target="_blank">
+      <img [src]="profile?.photoUrl" class="profile-img">
+    </a>
+
+    <!-- the username -->
+    <h1>
+      {{ profile?.name }}
+    </h1>
+
+
+
+    <div class="line"></div>
+
+    <p class="description">
+      {{ profile?.description }}
+    </p>
+
+
+
+    <!-- List of Sliding Items -->
+    <ion-list style="margin-top: 40px;">
+      <ion-list-header>
+        <ion-label>Produtos mais vendidos</ion-label>
+      </ion-list-header>
+      <ion-item *ngFor="let item of profile.offers">
+        <ion-thumbnail slot="start">
+          <img [src]="item.photoUrl">
+        </ion-thumbnail>
+        <ion-label>
+          {{ item.productType }}
+          - <span [innerHTML]="doRandom()"></span> Vendas em 5 dias
+        </ion-label>
+      </ion-item>
+    </ion-list>
+
+  </div>
+
+
+  <div class="profile-card" *ngIf="!profile?.photoUrl">
+  </div>
 
 </ion-content>

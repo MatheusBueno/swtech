@@ -1,15 +1,26 @@
 <ion-header>
+
+  <ion-toolbar>
+    <ion-buttons slot="primary">
+      <ion-avatar>
+        <img src="assets/bruno.png">
+      </ion-avatar>
+    </ion-buttons>
+    <ion-title><img src="assets/morango.png" height="48" alt=""></ion-title>
+  </ion-toolbar>
+
   <!-- Searchbar in a Toolbar -->
   <ion-toolbar>
     <!-- Searchbar with a placeholder -->
     <ion-searchbar (ionChange)="onChange($event)" mode="ios" animated placeholder="Qual produto você procura?">
     </ion-searchbar>
   </ion-toolbar>
+
 </ion-header>
 
 <ion-content>
 
-  <p *ngIf="offerList.length == 0 && allList" style="text-align: center; margin-top: 50px;">Não encontramos nenhuma
+  <p *ngIf="offerList.length == 0 && allList" style="text-align: center; margin-top: 10px;">Não encontramos nenhuma
     oferta :(</p>
 
   <div *ngFor="let item of offerList">
@@ -28,13 +39,20 @@
         <ion-grid style="padding-top: 20px;">
           <ion-row>
             <ion-col>
-              <ion-avatar>
-                <img [src]="item.photoUrl">
-              </ion-avatar>
+              <a [routerLink]="['/profile/' + item.key]">
+
+                <ion-avatar>
+                  <img [src]="item.photoUrl">
+                </ion-avatar>
+              </a>
             </ion-col>
             <ion-col size="9">
-              <ion-row style="display: flex; align-items: center; font-size: 15px; color: #2c3e50">
-                {{ item.name }}
+              <ion-row>
+                <a [routerLink]="['/profile/' + item.key]" style="text-decoration: none;">
+                  <p style=" margin: 0px; display: flex; align-items: center; font-size: 15px; color: #2c3e50">
+                    {{ item.name }}
+                  </p>
+                </a>
               </ion-row>
               <ion-row>
                 <ion-col style="padding: 0px 3px; text-align: center;" *ngFor="let num of [1,2,3,4,5]; let i = index">
@@ -54,6 +72,8 @@
       </ion-card-header>
 
       <ion-img [src]="item.offers['0'].photoUrl" style="height: 300px"></ion-img>
+
+      <ion-button expand="full" (click)="presentProfileModal(item)">Comprar</ion-button>
       <ion-card-content>
         <ion-thumbnail slot="start">
           <img *ngIf="!item.activeDelivery" src="assets/cant.png">

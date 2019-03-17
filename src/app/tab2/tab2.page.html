@@ -1,9 +1,27 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Tab Two
+      Carrinho
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content></ion-content>
+<ion-content padding>
+
+  <!-- List of Sliding Items -->
+  <ion-list style="margin-top: 40px;">
+    <ion-list-header>
+      <ion-label>Meus Itens</ion-label>
+    </ion-list-header>
+    <ion-item *ngFor="let item of [1,2]">
+      <ion-thumbnail slot="start">
+        <img
+          src="https://firebasestorage.googleapis.com/v0/b/swtech-4df07.appspot.com/o/offersImages%2Fmorangos.jpg?alt=media&token=aa0000af-f97b-4c0c-929e-0169b649dfc1">
+      </ion-thumbnail>
+      <ion-label>
+        Morango - 5 unidades
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+</ion-content>

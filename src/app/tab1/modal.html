@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="primary" (click)="close()">
+      Cancelar
+    </ion-buttons>
+    <ion-title>
+      Adicionar ao carrinho
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+  <span style="font-size: 25px; color: #2c3e50">{{ produto }}</span>
+  <p style="font-size: 12px"> fresquinho entregue por: {{ produtor }} </p>
+
+  <ion-item>
+    Quantidade
+  </ion-item>
+
+  <ion-item>
+    <ion-range min="1" max="200" color="primary" pin="true">
+      <ion-label slot="start">1</ion-label>
+      <ion-label slot="end">200</ion-label>
+    </ion-range>
+  </ion-item>
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-button (click)="close()" expand="full">Adicionar ao carrinho</ion-button>
+  </ion-toolbar>
+</ion-footer>
